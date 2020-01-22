@@ -12,7 +12,10 @@ export class LoginComponent implements OnInit {
 loginform: FormGroup;
 email: AbstractControl;
 pswd: AbstractControl;
-  constructor(private formbuilder: FormBuilder,private userService: UserService,private router: Router)
+  constructor(
+    private formbuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router)
    { 
     this.loginform = formbuilder.group({
       email: ['',[Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)]],
@@ -32,13 +35,12 @@ pswd: AbstractControl;
   }
   console.log('my data......',sendData);
   let data = this.userService.login(sendData);
-  if(data  == true){
-   console.log("You Have Successfully Logged In","Success");
-   this.router.navigate(['about']);
-
-  }
-  else{
-    console.log("Credentials Not Matching","Warning!");
+   if(data == true){
+        this.userService.alertForSuccess("You Have Successfully Logged In","Success");
+        this.router.navigate(['about']);
+      }else{
+        this.userService.alertFordanger("Credentials Not Matching","Warning!");
+        this.router.navigate(['login']) 
 }
 }
 }

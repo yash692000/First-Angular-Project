@@ -1,11 +1,12 @@
-<form [formGroup]="loginform" (ngSubmit)="login()">
+<p style="font-size: xx-large;" >MY LOGIN FORM</p>
+<form [formGroup]="loginform" (ngSubmit)="login()" style="margin-left: 5%;">
   <div>
     <label for="email">Email:</label>
     <input type="email" class="form-control col-md-4" id="email" placeholder="Enter email" formControlName="email">
     <div *ngIf="loginform.controls?.email?.invalid">
             
       <span class="hass-error-message" *ngIf="loginform.controls?.email?.errors?.pattern">
-        <p class="validation">*Please enter valid Firstname.</p>
+        <p class="validation">*Please enter valid email.</p>
       </span>
     </div>
   </div>
@@ -22,6 +23,6 @@
       </span>
       
     </div>
-  </div>  
-  <button type="submit" class="btn btn-primary">Submit</button>
- 
+  </div><br>
+  <button type="submit" class="btn btn-success">LogIn</button>
+  <button routerLink='/registration' style="margin-left: 5%;" class="btn btn-success">SignUp</button>

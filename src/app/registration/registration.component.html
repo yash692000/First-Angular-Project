@@ -1,1 +1,40 @@
-<p>registration works!</p>
+<p style="font-size: xx-large;">MY REGISTRATION FORM</p>
+<form [formGroup]="registrationform" (ngSubmit)="registration()" style="margin-left: 5%;">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control col-md-4" id="name" placeholder="Enter Your name" formControlName="name">
+      </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control col-md-4" id="email" placeholder="Enter email" formControlName="email">
+    <div *ngIf="registrationform.controls?.email?.invalid">
+            
+      <span class="hass-error-message" *ngIf="registrationform.controls?.email?.errors?.pattern">
+        <p class="validation">*Please enter valid email.</p>
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="gen">Gender:</label><br>
+    <input type="radio" value="male"  formControlName="gen" >Male<br>
+    <input type="radio" value="female"  formControlName="gen" >Female<br>
+    <input type="radio" value="other"  formControlName="gen" >other
+  </div>
+
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control col-md-4" id="pwd" placeholder="Enter password" formControlName="pswd">
+    <div *ngIf="registrationform.controls?.pswd?.invalid">
+                      
+      <span class="hass-error-message" *ngIf="registrationform.controls?.pswd?.errors?.minlength">
+        <p class="validation">*Minimum 5 character.</p>
+      </span>
+      <span class="hass-error-message" *ngIf="registrationform.controls?.pswd?.errors?.maxlength">
+        <p class="validation">*Maximum 10 character.</p>
+      </span>
+      
+    </div>
+  </div>  
+  <button type="submit" class="btn btn-primary">Submit</button>
+ 
